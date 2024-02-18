@@ -3,12 +3,71 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Error, Input, CustomBtn, Header } from '../components/common';
 import { loginSchema } from '../schema';
+import firestore from '@react-native-firebase/firestore';
+import { customAlphabet } from 'nanoid/non-secure';
+import { useNavigation } from '@react-navigation/native';
+
 
 const LogInScreen = () => {
+  const navigation = useNavigation();
 
-  const handleFormSubmission = async (value, action) => {
-    console.log(value);
-    action.resetForm()
+  const findUser = (email) => {
+    firestore()
+      .collection('users')
+      .where("email", "==", email.toLowerCase())
+      .get()
+      .then(res => {
+        // console.log(res?.docs[0]?.data())
+        navigation.navigate("Chat", { data: res?.docs[0]?.data() })
+
+      })
+      .catch((error => console.log("error during getting data from firestore " + error)))
+  }
+
+  const createUser = (name, email) => {
+    const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 15);
+    const userId = nanoid();
+    firestore()
+      .collection('users')
+      .doc(userId).set({
+        name: name,
+        email: email.toLowerCase(),
+        userId: userId,
+      }).then(() => {
+        //find the user after creating
+        findUser(email.toLowerCase());
+        // console.log("user created")
+
+      }).catch(error => console.log("error during registering of user" + error))
+  }
+
+  const registerUser = ({ name, email }) => {
+
+    firestore()
+      .collection('users')
+      .where("email", "==", email.toLowerCase())
+      .get()
+      .then(res => {
+
+        if (res.docs.length === 0) {
+          //user is not exists create new one
+          createUser(name, email);
+        }
+        else {
+          //user already exists
+          // console.log(res?.docs[0].data())
+          // console.log("user exists")
+          navigation.navigate("Chat", { data: res?.docs[0]?.data() })
+        }
+
+      })
+      .catch((error => console.log("error during getting data from firestore " + error)))
+    // navigation.push("Home")
+  }
+
+  const LoginHandle = (value, action) => {
+    registerUser(value);
+    action.resetForm();
   };
 
   const initialState = {
@@ -21,7 +80,7 @@ const LogInScreen = () => {
       initialValues={initialState}
       validateOnMount={true}
       validationSchema={loginSchema}
-      onSubmit={handleFormSubmission}>
+      onSubmit={LoginHandle}>
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isValid }) => (
         <>
           <Header title={"LOGIN"} leftIcon={true} />
