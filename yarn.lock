@@ -1702,6 +1702,11 @@
   resolved "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-18.8.0.tgz"
   integrity sha512-tB8ZhIYuFoTO4kYXdh5Q+LSPIXxJ5WPrVxxIxdc+qeaF7SudIojO6w/g8tTxbFdPEos8+JWhBIFAb+o0L3RbBQ==
 
+"@react-native-firebase/storage@^18.8.0":
+  version "18.8.0"
+  resolved "https://registry.npmjs.org/@react-native-firebase/storage/-/storage-18.8.0.tgz"
+  integrity sha512-Z+26aQnU/1bNk3JPwuORke7T6yhKu955UFb+LUeh4L/0a36pFFxwuiHKLc4tjjALB4XclFcxVlb1+Ife5TCV4w==
+
 "@react-native/assets-registry@0.73.1":
   version "0.73.1"
   resolved "https://registry.npmjs.org/@react-native/assets-registry/-/assets-registry-0.73.1.tgz"
@@ -5812,6 +5817,11 @@ react-native-gifted-chat@^2.4.0:
     react-native-typing-animation "0.1.7"
     use-memo-one "1.1.3"
     uuid "3.4.0"
+
+react-native-image-picker@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npmjs.org/react-native-image-picker/-/react-native-image-picker-7.1.0.tgz"
+  integrity sha512-An0hn2mwqjGAA2mbsXdHRTyoMMklGPT9stIjE2zvkegU7CdoFhowqvVHfnELJNZnfAiSQuIaeY//z0r1R0lsgw==
 
 react-native-iphone-x-helper@1.3.1:
   version "1.3.1"

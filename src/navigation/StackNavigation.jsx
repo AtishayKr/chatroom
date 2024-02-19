@@ -12,8 +12,9 @@ const StackNavigation = () => {
       <Stack.Screen name="Login" component={LogInScreen} options={{ headerShown: false }} />
       <Stack.Screen name="ChatRoom" component={ChatScreen} options={{
         headerStyle: {
-          backgroundColor: '#00D426',
+          backgroundColor: '#008069',
         },
+        headerTintColor: "white"
       }} />
     </Stack.Navigator>
   )
