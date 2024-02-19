@@ -18,7 +18,7 @@ const LogInScreen = () => {
       .get()
       .then(res => {
         // console.log(res?.docs[0]?.data())
-        navigation.navigate("Chat", { data: res?.docs[0]?.data() })
+        navigation.navigate("ChatRoom", { data: res?.docs[0]?.data() })
 
       })
       .catch((error => console.log("error during getting data from firestore " + error)))
@@ -57,7 +57,7 @@ const LogInScreen = () => {
           //user already exists
           // console.log(res?.docs[0].data())
           // console.log("user exists")
-          navigation.navigate("Chat", { data: res?.docs[0]?.data() })
+          navigation.navigate("ChatRoom", { data: res?.docs[0]?.data() })
         }
 
       })
@@ -83,7 +83,6 @@ const LogInScreen = () => {
       onSubmit={LoginHandle}>
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isValid }) => (
         <>
-          <Header title={"LOGIN"} leftIcon={true} />
           <View style={styles.mainContainer}>
 
             <View style={styles.logInform}>
@@ -106,7 +105,7 @@ const LogInScreen = () => {
             </View>
             <CustomBtn
               customStyle={styles.logInBtn}
-              title={'LOGIN'}
+              title={'Enter the ChatRoom'}
               color={'white'}
               onPress={handleSubmit}
             />
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   logInform: {
     width: '100%'
@@ -133,7 +132,8 @@ const styles = StyleSheet.create({
     height: 40,
     width: '100%',
     borderRadius: 10,
-    marginTop: 20
+    marginTop: 20,
+    backgroundColor: '#00D426'
   },
   text: {
     marginTop: 20,
