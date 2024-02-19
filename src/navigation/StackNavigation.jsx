@@ -10,7 +10,11 @@ const StackNavigation = () => {
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Login" component={LogInScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Chat" component={ChatScreen} />
+      <Stack.Screen name="ChatRoom" component={ChatScreen} options={{
+        headerStyle: {
+          backgroundColor: '#00D426',
+        },
+      }} />
     </Stack.Navigator>
   )
 }
